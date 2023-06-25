@@ -1,0 +1,34 @@
+{
+  "name": "tchiki-react-modal",
+  "version": "1.0.0",
+  "description": "customisable react modal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/S-Syrichko/react-modal.git"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "dialog",
+    "modal"
+  ],
+  "author": "S-Syrichko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/S-Syrichko/react-modal/issues"
+  },
+  "homepage": "https://github.com/S-Syrichko/react-modal#readme",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.13",
+    "@types/react-dom": "^18.2.6",
+    "typescript": "^5.1.3"
+  }
+}
