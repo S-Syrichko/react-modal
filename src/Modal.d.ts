@@ -1,10 +1,8 @@
-import React from "react";
-interface ModalProps {
-    content: React.ReactNode;
-    style?: React.CSSProperties;
+import React, { ReactNode } from "react";
+type ModalProps = {
     isOpen: boolean;
-    onClose?: () => void;
-    closeButton?: React.ReactNode;
-}
-declare const Modal: ({ content, style, isOpen, onClose, closeButton, }: ModalProps) => React.JSX.Element;
+    onClose: () => void;
+    children?: ReactNode;
+};
+declare const Modal: ({ isOpen, onClose, children }: ModalProps) => React.JSX.Element;
 export default Modal;

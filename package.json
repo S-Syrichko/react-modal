@@ -1,10 +1,12 @@
 {
-  "name": "tchiki-react-modal",
+  "name": "tchiki-modal-react",
   "version": "1.0.0",
   "description": "customisable react modal",
-  "main": "index.js",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",

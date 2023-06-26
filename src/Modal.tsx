@@ -1,46 +1,57 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
-interface ModalProps {
-  content: React.ReactNode;
-  style?: React.CSSProperties;
+type ModalProps = {
   isOpen: boolean;
-  onClose?: () => void;
+  onClose: () => void;
+  children?: ReactNode;
   closeButton?: React.ReactNode;
-}
+  style?: React.CSSProperties;
+};
 
 const Modal = ({
-  content,
-  style,
   isOpen,
   onClose,
+  children,
   closeButton,
+  style,
 }: ModalProps) => {
   if (!isOpen) {
     return null;
   }
 
   const defaultCloseButton = <span>X</span>;
+  const backdropStyle: React.CSSProperties = {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    zIndex: 9999,
+  };
   const modalStyle = style
     ? style
-    : {
-        top: "40px",
-        left: "40px",
-        right: "40px",
-        bottom: "40px",
-        border: "1px solid #ccc",
-        background: "#fff",
-        overflow: "auto",
-        borderRadius: "4px",
-        outline: "none",
-        padding: "20px",
-      };
+    : { backgroundColor: "#fff", padding: "20px", borderRadius: "8px" };
+  const closeStyle: React.CSSProperties = {
+    position: "absolute",
+    top: "10px",
+    right: "10px",
+    cursor: "pointer",
+  };
 
   return (
-    <div className="modal" style={modalStyle}>
-      <div className="close-button" onClick={onClose}>
-        {closeButton ? closeButton : defaultCloseButton}
+    <div className="modal-overlay">
+      <div
+        className="modal-backdrop"
+        style={backdropStyle}
+        onClick={onClose}
+      ></div>
+      <div className="modal">
+        <button className="modal-close" style={closeStyle} onClick={onClose}>
+          {closeButton ? closeButton : defaultCloseButton}
+        </button>
+        <div className="modal-content">{children}</div>
       </div>
-      {content}
     </div>
   );
 };
