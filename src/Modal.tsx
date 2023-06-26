@@ -7,9 +7,9 @@ type ModalProps = {
   children?: ReactNode;
   closeButton?: React.ReactNode;
   style?: {
-    backdrop: React.CSSProperties;
-    modal: React.CSSProperties;
-    close: React.CSSProperties;
+    backdrop?: React.CSSProperties;
+    modal?: React.CSSProperties;
+    close?: React.CSSProperties;
   };
 };
 
@@ -18,7 +18,7 @@ const Modal = ({
   onClose,
   children,
   closeButton,
-  style,
+  style = {},
 }: ModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const firstFocusableElementRef = useRef<HTMLButtonElement | null>(null);

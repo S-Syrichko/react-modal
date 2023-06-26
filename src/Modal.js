@@ -40,7 +40,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(require("react"));
 var prop_types_1 = __importDefault(require("prop-types"));
 var Modal = function (_a) {
-    var isOpen = _a.isOpen, onClose = _a.onClose, children = _a.children, closeButton = _a.closeButton, style = _a.style;
+    var isOpen = _a.isOpen, onClose = _a.onClose, children = _a.children, closeButton = _a.closeButton, _b = _a.style, style = _b === void 0 ? {} : _b;
     var modalRef = (0, react_1.useRef)(null);
     var firstFocusableElementRef = (0, react_1.useRef)(null);
     var lastFocusableElementRef = (0, react_1.useRef)(null);
