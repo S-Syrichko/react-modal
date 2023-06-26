@@ -33,10 +33,14 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(require("react"));
+var prop_types_1 = __importDefault(require("prop-types"));
 var Modal = function (_a) {
-    var isOpen = _a.isOpen, onClose = _a.onClose, children = _a.children, closeButton = _a.closeButton, backdropStyle = _a.backdropStyle, modalStyle = _a.modalStyle, closeStyle = _a.closeStyle;
+    var isOpen = _a.isOpen, onClose = _a.onClose, children = _a.children, closeButton = _a.closeButton, style = _a.style;
     var modalRef = (0, react_1.useRef)(null);
     var firstFocusableElementRef = (0, react_1.useRef)(null);
     var lastFocusableElementRef = (0, react_1.useRef)(null);
@@ -101,14 +105,25 @@ var Modal = function (_a) {
             cursor: "pointer",
         },
     };
-    var mergedBackdropStyle = __assign(__assign({}, defaultStyles.backdrop), backdropStyle);
-    var mergedModalStyle = __assign(__assign({}, defaultStyles.modal), modalStyle);
-    var mergedCloseStyle = __assign(__assign({}, defaultStyles.close), closeStyle);
+    var mergedBackdropStyle = __assign(__assign({}, defaultStyles.backdrop), style.backdrop);
+    var mergedModalStyle = __assign(__assign({}, defaultStyles.modal), style.modal);
+    var mergedCloseStyle = __assign(__assign({}, defaultStyles.close), style.close);
     return (react_1.default.createElement("div", { className: "modal-overlay" },
-        react_1.default.createElement("div", { className: "modal-backdrop", style: mergedBackdropStyle, onClick: onClose }),
-        react_1.default.createElement("div", { className: "modal", style: mergedModalStyle, ref: modalRef, tabIndex: -1 },
-            react_1.default.createElement("button", { className: "modal-close", style: mergedCloseStyle, onClick: onClose, ref: firstFocusableElementRef }, closeButton ? closeButton : defaultCloseButton),
+        react_1.default.createElement("div", { className: "modal-backdrop", style: mergedBackdropStyle, onClick: onClose, role: "presentation", "aria-hidden": "true" }),
+        react_1.default.createElement("div", { className: "modal", style: mergedModalStyle, ref: modalRef, tabIndex: -1, role: "dialog", "aria-modal": "true" },
+            react_1.default.createElement("button", { className: "modal-close", style: mergedCloseStyle, onClick: onClose, ref: firstFocusableElementRef, "aria-label": "Close Modal" }, closeButton ? closeButton : defaultCloseButton),
             react_1.default.createElement("div", { className: "modal-content" }, children),
-            react_1.default.createElement("button", { className: "modal-dummy-button", style: { position: "absolute", opacity: 0, pointerEvents: "none" }, ref: lastFocusableElementRef }))));
+            react_1.default.createElement("button", { className: "modal-dummy-button", style: { position: "absolute", opacity: 0, pointerEvents: "none" }, ref: lastFocusableElementRef, "aria-hidden": "true" }))));
+};
+Modal.propTypes = {
+    isOpen: prop_types_1.default.bool.isRequired,
+    onClose: prop_types_1.default.func.isRequired,
+    children: prop_types_1.default.node,
+    closeButton: prop_types_1.default.node,
+    style: prop_types_1.default.shape({
+        backdrop: prop_types_1.default.object,
+        modal: prop_types_1.default.object,
+        close: prop_types_1.default.object,
+    }),
 };
 exports.default = Modal;

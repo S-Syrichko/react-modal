@@ -1,13 +1,16 @@
 import React, { ReactNode, useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 
 type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
   children?: ReactNode;
   closeButton?: React.ReactNode;
-  backdropStyle?: React.CSSProperties;
-  modalStyle?: React.CSSProperties;
-  closeStyle?: React.CSSProperties;
+  style?: {
+    backdrop: React.CSSProperties;
+    modal: React.CSSProperties;
+    close: React.CSSProperties;
+  };
 };
 
 const Modal = ({
@@ -15,9 +18,7 @@ const Modal = ({
   onClose,
   children,
   closeButton,
-  backdropStyle,
-  modalStyle,
-  closeStyle,
+  style,
 }: ModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const firstFocusableElementRef = useRef<HTMLButtonElement | null>(null);
@@ -98,17 +99,17 @@ const Modal = ({
 
   const mergedBackdropStyle: React.CSSProperties = {
     ...defaultStyles.backdrop,
-    ...backdropStyle,
+    ...style.backdrop,
   };
 
   const mergedModalStyle: React.CSSProperties = {
     ...defaultStyles.modal,
-    ...modalStyle,
+    ...style.modal,
   };
 
   const mergedCloseStyle: React.CSSProperties = {
     ...defaultStyles.close,
-    ...closeStyle,
+    ...style.close,
   };
 
   return (
@@ -117,18 +118,23 @@ const Modal = ({
         className="modal-backdrop"
         style={mergedBackdropStyle}
         onClick={onClose}
+        role="presentation"
+        aria-hidden="true"
       ></div>
       <div
         className="modal"
         style={mergedModalStyle}
         ref={modalRef}
         tabIndex={-1}
+        role="dialog"
+        aria-modal="true"
       >
         <button
           className="modal-close"
           style={mergedCloseStyle}
           onClick={onClose}
           ref={firstFocusableElementRef}
+          aria-label="Close Modal"
         >
           {closeButton ? closeButton : defaultCloseButton}
         </button>
@@ -137,10 +143,23 @@ const Modal = ({
           className="modal-dummy-button"
           style={{ position: "absolute", opacity: 0, pointerEvents: "none" }}
           ref={lastFocusableElementRef}
+          aria-hidden="true"
         />
       </div>
     </div>
   );
+};
+
+Modal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.node,
+  closeButton: PropTypes.node,
+  style: PropTypes.shape({
+    backdrop: PropTypes.object,
+    modal: PropTypes.object,
+    close: PropTypes.object,
+  }),
 };
 
 export default Modal;
