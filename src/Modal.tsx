@@ -27,11 +27,16 @@ const Modal = ({
     width: "100%",
     height: "100%",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
-    zIndex: 9999,
+    zIndex: 9998,
   };
   const modalStyle = style
     ? style
-    : { backgroundColor: "#fff", padding: "20px", borderRadius: "8px" };
+    : {
+        backgroundColor: "#fff",
+        padding: "20px",
+        borderRadius: "8px",
+        zIndex: 9999,
+      };
   const closeStyle: React.CSSProperties = {
     position: "absolute",
     top: "10px",
