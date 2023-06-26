@@ -30,9 +30,6 @@ const Modal = ({
       }
     };
 
-    if (!isOpen) {
-      return null;
-    }
     const handleTabKey = (event: KeyboardEvent) => {
       if (event.key === "Tab") {
         if (
@@ -63,6 +60,10 @@ const Modal = ({
       window.removeEventListener("keydown", handleTabKey);
     };
   }, [isOpen]);
+
+  if (!isOpen) {
+    return null;
+  }
 
   const defaultCloseButton = <span>X</span>;
   const defaultStyles: {

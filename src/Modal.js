@@ -47,9 +47,6 @@ var Modal = function (_a) {
                 onClose();
             }
         };
-        if (!isOpen) {
-            return null;
-        }
         var handleTabKey = function (event) {
             var _a, _b;
             if (event.key === "Tab") {
@@ -75,6 +72,9 @@ var Modal = function (_a) {
             window.removeEventListener("keydown", handleTabKey);
         };
     }, [isOpen]);
+    if (!isOpen) {
+        return null;
+    }
     var defaultCloseButton = react_1.default.createElement("span", null, "X");
     var defaultStyles = {
         backdrop: {
