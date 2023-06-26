@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect, useRef } from "react";
 
 type ModalProps = {
   isOpen: boolean;
@@ -22,6 +22,48 @@ const Modal = ({
   if (!isOpen) {
     return null;
   }
+
+  const modalRef = useRef<HTMLDivElement>(null);
+  const firstFocusableElementRef = useRef<HTMLButtonElement | null>(null);
+  const lastFocusableElementRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    const handleEscKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    const handleTabKey = (event: KeyboardEvent) => {
+      if (event.key === "Tab") {
+        if (
+          document.activeElement === lastFocusableElementRef.current &&
+          !event.shiftKey
+        ) {
+          event.preventDefault();
+          firstFocusableElementRef.current?.focus();
+        } else if (
+          document.activeElement === firstFocusableElementRef.current &&
+          event.shiftKey
+        ) {
+          event.preventDefault();
+          lastFocusableElementRef.current?.focus();
+        }
+      }
+    };
+
+    if (isOpen) {
+      window.addEventListener("keydown", handleEscKey);
+      window.addEventListener("keydown", handleTabKey);
+
+      firstFocusableElementRef.current?.focus();
+    }
+
+    return () => {
+      window.removeEventListener("keydown", handleEscKey);
+      window.removeEventListener("keydown", handleTabKey);
+    };
+  }, [isOpen]);
 
   const defaultCloseButton = <span>X</span>;
   const defaultStyles: {
@@ -76,15 +118,26 @@ const Modal = ({
         style={mergedBackdropStyle}
         onClick={onClose}
       ></div>
-      <div className="modal" style={mergedModalStyle}>
+      <div
+        className="modal"
+        style={mergedModalStyle}
+        ref={modalRef}
+        tabIndex={-1}
+      >
         <button
           className="modal-close"
           style={mergedCloseStyle}
           onClick={onClose}
+          ref={firstFocusableElementRef}
         >
           {closeButton ? closeButton : defaultCloseButton}
         </button>
         <div className="modal-content">{children}</div>
+        <button
+          className="modal-dummy-button"
+          style={{ position: "absolute", opacity: 0, pointerEvents: "none" }}
+          ref={lastFocusableElementRef}
+        />
       </div>
     </div>
   );
