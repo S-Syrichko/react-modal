@@ -58,11 +58,11 @@ const Modal = ({
     <div className="modal-overlay">
       <div
         className="modal-backdrop"
-        style={backdropStyle}
+        style={backdropInlineStyle}
         onClick={onClose}
       ></div>
-      <div className="modal" style={modalStyle}>
-        <button className="modal-close" style={closeStyle} onClick={onClose}>
+      <div className="modal" style={modalInlineStyle}>
+        <button className="modal-close" style={closeInlineStyle} onClick={onClose}>
           {closeButton ? closeButton : defaultCloseButton}
         </button>
         <div className="modal-content">{children}</div>
