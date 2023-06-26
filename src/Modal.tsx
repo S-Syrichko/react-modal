@@ -5,7 +5,9 @@ type ModalProps = {
   onClose: () => void;
   children?: ReactNode;
   closeButton?: React.ReactNode;
-  style?: React.CSSProperties;
+  backdropStyle?: React.CSSProperties;
+  modalStyle?: React.CSSProperties;
+  closeStyle?: React.CSSProperties;
 };
 
 const Modal = ({
@@ -13,36 +15,44 @@ const Modal = ({
   onClose,
   children,
   closeButton,
-  style,
+  backdropStyle,
+  modalStyle,
+  closeStyle,
 }: ModalProps) => {
   if (!isOpen) {
     return null;
   }
 
   const defaultCloseButton = <span>X</span>;
-  const backdropStyle: React.CSSProperties = {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    zIndex: 9998,
-  };
-  const modalStyle = style
-    ? style
+  const backdropInlineStyle: React.CSSProperties = backdropStyle
+    ? backdropStyle
     : {
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        zIndex: 9998,
+      };
+  const modalInlineStyle: React.CSSProperties = modalStyle
+    ? modalStyle
+    : {
+        position: "relative",
+        color: "#000",
         backgroundColor: "#fff",
         padding: "20px",
         borderRadius: "8px",
         zIndex: 9999,
       };
-  const closeStyle: React.CSSProperties = {
-    position: "absolute",
-    top: "10px",
-    right: "10px",
-    cursor: "pointer",
-  };
+  const closeInlineStyle: React.CSSProperties = closeStyle
+    ? closeStyle
+    : {
+        position: "absolute",
+        top: "10px",
+        right: "10px",
+        cursor: "pointer",
+      };
 
   return (
     <div className="modal-overlay">
