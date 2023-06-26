@@ -51,7 +51,7 @@ const Modal = ({
         style={backdropStyle}
         onClick={onClose}
       ></div>
-      <div className="modal">
+      <div className="modal" style={modalStyle}>
         <button className="modal-close" style={closeStyle} onClick={onClose}>
           {closeButton ? closeButton : defaultCloseButton}
         </button>
