@@ -19,10 +19,6 @@ const Modal = ({
   modalStyle,
   closeStyle,
 }: ModalProps) => {
-  if (!isOpen) {
-    return null;
-  }
-
   const modalRef = useRef<HTMLDivElement>(null);
   const firstFocusableElementRef = useRef<HTMLButtonElement | null>(null);
   const lastFocusableElementRef = useRef<HTMLButtonElement | null>(null);
@@ -34,6 +30,9 @@ const Modal = ({
       }
     };
 
+    if (!isOpen) {
+      return null;
+    }
     const handleTabKey = (event: KeyboardEvent) => {
       if (event.key === "Tab") {
         if (
