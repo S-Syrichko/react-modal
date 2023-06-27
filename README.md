@@ -28,7 +28,6 @@ Certainly! Here's an updated version of the Markdown table with an additional co
 | ------------- | --------------------- | ---------------------------------------------------------------- | -------------------------------------------------------------- |
 | isOpen        | boolean               | Indicates whether the modal is open or closed.                    | -                                                              |
 | onClose       | () => void            | Function called when the modal is closed.                         | -                                                              |
-| children      | ReactNode             | The content of the modal to be displayed.                         | -                                                              |
 | closeButton  | React.ReactNode       | Custom React node for the modal's close button.                   | X                                                             |
 | style         | object                | Object containing custom styles for the modal.                    | -|
 | style.backdrop| React.CSSProperties   | Custom styles for the modal backdrop.                             | `{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%", backgroundColor: "rgba(0, 0, 0, 0.5)", zIndex: 9998 }` |
