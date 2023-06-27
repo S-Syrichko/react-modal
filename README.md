@@ -22,7 +22,6 @@ To install, you can use [npm](https://npmjs.org/) :
 
 Here is a full list of properties accepted by the plugin : 
 
-Certainly! Here's an updated version of the Markdown table with an additional column for default values for the `style` prop:
 
 | Prop          | Type                  | Description                                                      | Default Value                                                  |
 | ------------- | --------------------- | ---------------------------------------------------------------- | -------------------------------------------------------------- |
