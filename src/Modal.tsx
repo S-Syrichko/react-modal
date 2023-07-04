@@ -7,9 +7,21 @@ type ModalProps = {
   children?: ReactNode;
   closeButton?: React.ReactNode;
   style?: {
-    backdrop?: React.CSSProperties;
-    modal?: React.CSSProperties;
-    close?: React.CSSProperties;
+    backdrop?:
+      | {
+          [key: string]: React.CSSProperties[keyof React.CSSProperties];
+        }
+      | undefined;
+    modal?:
+      | {
+          [key: string]: React.CSSProperties[keyof React.CSSProperties];
+        }
+      | undefined;
+    close?:
+      | {
+          [key: string]: React.CSSProperties[keyof React.CSSProperties];
+        }
+      | undefined;
   };
 };
 
