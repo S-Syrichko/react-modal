@@ -12,6 +12,8 @@ Just another modal plugin for React. Supports ARIA attributes and is customisabl
 
 ## Installation
 
+Node version: [v18.17.1](https://nodejs.org/fr/download)
+
 To install, you can use [npm](https://npmjs.org/) :
 
 
