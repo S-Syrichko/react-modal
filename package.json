@@ -1,6 +1,6 @@
 {
   "name": "tchiki-modal-react",
-  "version": "5.0.4",
+  "version": "5.0.5",
   "description": "customisable react modal",
   "main": "src/index.js",
   "types": "src/index.d.ts",
